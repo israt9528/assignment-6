@@ -14,64 +14,110 @@
   </head>
   <body>
     <!-- navigation bar -->
-    <header>
-      <nav class="max-w-[1650px] mx-auto">
-        <div class="navbar bg-base-100 shadow-sm">
-          <div class="navbar-start">
-            <div class="dropdown">
-              <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </div>
-              <ul
-                tabindex="0"
-                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+
+    <nav>
+      <div class="navbar bg-[#15803D] px-32 max-md:pl-0 max-md:pr-3 shadow-sm">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <li><a>Item 1</a></li>
-                <li>
-                  <a>Parent</a>
-                  <ul class="p-2">
-                    <li><a>Submenu 1</a></li>
-                    <li><a>Submenu 2</a></li>
-                  </ul>
-                </li>
-                <li><a>Item 3</a></li>
-              </ul>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
             </div>
-            <a class="btn btn-ghost text-xl">daisyUI</a>
-          </div>
-          <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal px-1">
-              <li><a>Item 1</a></li>
-              <li>
-                <details>
-                  <summary>Parent</summary>
-                  <ul class="p-2">
-                    <li><a>Submenu 1</a></li>
-                    <li><a>Submenu 2</a></li>
-                  </ul>
-                </details>
-              </li>
-              <li><a>Item 3</a></li>
+            <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li><a>About</a></li>
+              <li><a>Gallery</a></li>
+              <li><a>Plant a Tree</a></li>
             </ul>
           </div>
-          <div class="navbar-end">
-            <a class="btn">Button</a>
-          </div>
+          <a class="text-2xl text-white font-semibold">Green Earth</a>
         </div>
-      </nav>
-    </header>
+        <div class="navbar-center text-white font-medium hidden lg:flex">
+          <ul class="menu menu-horizontal px-1">
+            <li><a>About</a></li>
+            <li><a>Gallery</a></li>
+            <li><a>Plant a Tree</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <a
+            class="btn bg-[#FACC15] text-[#15803D] rounded-3xl border-0 shadow-none"
+            >Plant a Tree</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- banner section -->
+    <section
+      class="text-center bg-[#CFF0DC] flex justify-center items-center gap-5 max-md:flex-col"
+    >
+      <div>
+        <img class="w-full max-md:w-[40%]" src="assets/hero-leaf1.png" alt="" />
+      </div>
+      <div class="space-y-3 max-md:px-5">
+        <h1 class="text-[40px] font-bold max-md:text-3xl">
+          Plant a Tree, Grow a Future
+        </h1>
+        <p class="text-[#00000080] mb-5">
+          Join our mission to plant 1 million trees and make the Earth greener
+          for future generations.
+        </p>
+        <a class="btn bg-[#FACC15] text-[#15803D] rounded-3xl">Get Involved</a>
+      </div>
+      <div class="">
+        <img
+          class="w-full max-md:w-[40%] max-md:ml-[60%]"
+          src="assets/hero-leaf2.png"
+          alt=""
+        />
+      </div>
+    </section>
+
+    <!-- choose trees section -->
+    <section></section>
+
+    <!-- about campaign section -->
+    <section class="space-y-10 py-24 bg-[#f0fdf4]">
+      <div class="text-center">
+        <h2 class="text-4xl font-semibold">About the Campaign</h2>
+      </div>
+      <div
+        class="flex gap-8 justify-between items-center w-[60%] mx-auto max-md:flex-col"
+      >
+        <div class="flex-1">
+          <img class="w-full" src="assets/about.png" alt="" />
+        </div>
+        <div class="text-[#00000080] flex-1 space-y-5">
+          <p>
+            Green Earth is a global tree plantation initiative dedicated to
+            fighting climate change. Since our start, we’ve planted over 500,000
+            trees worldwide. By joining our campaign, you help restore forests,
+            create habitats for wildlife, and combat global warming. Restoration
+            of natural habitats Improvement of air quality Support for local
+            communities
+          </p>
+          <ul class="list-disc ml-8">
+            <li>Restoration of natural habitats</li>
+            <li>Improvement of air quality</li>
+            <li>Support for local communities</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
