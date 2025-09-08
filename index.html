@@ -105,14 +105,35 @@
       <div class="text-center">
         <h2 class="text-4xl font-semibold">Choose Your Trees</h2>
       </div>
-      <div class="w-[88%] mx-auto grid grid-cols-12 gap-7">
+
+      <!-- Open the modal using ID.showModal() method -->
+      <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+      <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+          <div id="details-container"></div>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
+      <div class="w-[88%] mx-auto grid grid-cols-12 gap-5">
         <div class="col-span-2">
           <h3 class="text-xl font-semibold mb-3">Categories</h3>
-          <p class="text-[#1F2937] pl-2 py-2">All Trees</p>
+          <p
+            class="text-[#1F2937] pl-2 py-2 rounded-md hover:bg-[#15803D] hover:text-white"
+            onclick="loadAllTrees()"
+          >
+            All Trees
+          </p>
           <ul id="cat-list"></ul>
         </div>
         <div
-          class="col-span-8 border border-solid border-gray-500 h-[100px]"
+          id="plant-container"
+          class="col-span-8 grid grid-cols-3 gap-3"
         ></div>
         <div
           class="col-span-2 border border-solid border-gray-500 h-[100px]"
