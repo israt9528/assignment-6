@@ -21,10 +21,12 @@
 }
 
 #cat-list li {
-    color: #1F2937;
+    /* color: #1F2937; */
     padding-left: 4px;
 }
-:hover li {
+
+
+.selected {
+    background-color: #15803D;
     color: #fff;
 }
-

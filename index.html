@@ -20,6 +20,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- styles sheet -->
     <link rel="stylesheet" href="styles.css" />
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/3d247520db.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <!-- navigation bar -->
@@ -106,6 +111,14 @@
         <h2 class="text-4xl font-semibold">Choose Your Trees</h2>
       </div>
 
+      <!-- spinner -->
+      <section
+        id="spinner"
+        class="flex justify-center items-center py-10 hidden"
+      >
+        <span class="loading loading-spinner loading-xl"></span>
+      </section>
+
       <!-- Open the modal using ID.showModal() method -->
       <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
       <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
@@ -120,11 +133,12 @@
         </div>
       </dialog>
 
-      <div class="w-[88%] mx-auto grid grid-cols-12 gap-5">
+      <div id="main-container" class="w-[88%] mx-auto grid grid-cols-12 gap-5">
         <div class="col-span-2">
           <h3 class="text-xl font-semibold mb-3">Categories</h3>
           <p
-            class="text-[#1F2937] pl-2 py-2 rounded-md hover:bg-[#15803D] hover:text-white"
+            id="all"
+            class="pl-2 py-2 rounded-md hover:bg-[#15803D] hover:text-white plant-list"
             onclick="loadAllTrees()"
           >
             All Trees
@@ -135,9 +149,22 @@
           id="plant-container"
           class="col-span-8 grid grid-cols-3 gap-3"
         ></div>
-        <div
-          class="col-span-2 border border-solid border-gray-500 h-[100px]"
-        ></div>
+        <div class="col-span-2 bg-white p-3 rounded-2xl">
+          <h3 class="text-xl font-semibold mb-3">Your Cart</h3>
+          <div id="cart-container ">
+            <div
+              class="bg-[#F0FDF4] rounded-lg px-3 py-1 flex items-center justify-between"
+            >
+              <div>
+                <h5 class="font-medium">tree name</h5>
+                <p class="text-[#00000080] text-sm mb-2">price</p>
+              </div>
+              <div class="text-[#00000080]">
+                <i class="fa-solid fa-xmark"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 

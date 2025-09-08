@@ -1,9 +1,25 @@
+// manage spinner
+
+const manageSpinner = (status) => {
+  if (status == true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("main-container").classList.add("hidden");
+  } else {
+    document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("main-container").classList.remove("hidden");
+  }
+};
+
 //fetch all categories
 
 const loadCategories = () => {
+  manageSpinner(true);
+
   fetch("https://openapi.programming-hero.com/api/categories")
     .then((res) => res.json())
-    .then((data) => displayCategories(data.categories));
+    .then((data) => {
+      displayCategories(data.categories);
+    });
 };
 
 // display categories
@@ -17,20 +33,36 @@ const displayCategories = (categories) => {
     // create child element
     const li = document.createElement("li");
     li.innerHTML = `
-     <li  onclick="loadPlants(${category.id})" class="py-2 rounded-md hover:bg-[#15803D] hover:text-[#fff]">${category.category_name}</li>
+     <li id="plant-list-${category.id}" class="py-2 rounded-md hover:bg-[#15803D] hover:text-[#fff] plant-list" onclick="loadPlants(${category.id})" >${category.category_name}</li>
     `;
     // append child
     listContainer.appendChild(li);
   }
+  manageSpinner(false);
 };
 
 // fetch plants by category
 
 const loadPlants = (id) => {
+  manageSpinner(true);
+
   url = `https://openapi.programming-hero.com/api/category/${id}`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displayPlants(data.plants));
+    .then((data) => {
+      removeSelected();
+      const clickList = document.getElementById(`plant-list-${id}`);
+      clickList.classList.add("selected");
+      displayPlants(data.plants);
+    });
+};
+
+// remove class
+const removeSelected = () => {
+  let plantList = document.querySelectorAll(".plant-list");
+  plantList.forEach((item) => {
+    item.classList.remove("selected");
+  });
 };
 
 // display plants by category
@@ -48,7 +80,7 @@ const displayPlants = (plants) => {
             <div>
               <img class=" w-full max-h-[200px] rounded-lg" src=${plant.image} alt="" />
             </div>
-            <h5 onclick="loadDetails(${plant.id})" class="my-2 font-semibold">${plant.name}</h5>
+            <h5 onclick="loadDetails(${plant.id})" class="my-2 font-semibold plant-name">${plant.name}</h5>
             <div class="h-[80px]"><p class="text-[#00000080] text-xs">
               ${plant.description}
             </p></div>
@@ -58,7 +90,7 @@ const displayPlants = (plants) => {
               </div>
               <div class="font-bold">৳${plant.price}</div>
             </div>
-            <button class="bg-[#15803D] text-white w-full rounded-3xl py-2">
+            <button  class="bg-[#15803D] text-white w-full rounded-3xl py-2 " onclick="addToCart('e')">
               Add to Cart
             </button>
           </div>
@@ -66,15 +98,29 @@ const displayPlants = (plants) => {
     // append child
     plantContainer.appendChild(div);
   }
+  manageSpinner(false);
 };
 
 loadCategories();
+
+const addToCart = (e) => {
+  let plantName = e.target.parentNode.querySelector(".plant-name").innerText;
+  console.log(plantName);
+
+  // alert(`${plant.name} has been added to the cart`);
+};
+
 // fetch all plants
 
 const loadAllTrees = () => {
+  manageSpinner(true);
+
   fetch("https://openapi.programming-hero.com/api/plants")
     .then((res) => res.json())
-    .then((data) => displayPlants(data.plants));
+    .then((data) => {
+      document.getElementById("all").classList.add("selected");
+      displayPlants(data.plants);
+    });
 };
 
 // fetch plants details
@@ -89,8 +135,6 @@ const loadDetails = (id) => {
 // display plants details
 
 const displayDetails = (details) => {
-  console.log(details);
-
   const plantDetails = document.getElementById("details-container");
   plantDetails.innerHTML = `
           <h3 class="text-lg font-bold">${details.name}</h3>
@@ -110,3 +154,10 @@ const displayDetails = (details) => {
 `;
   document.getElementById("my_modal_5").showModal();
 };
+
+let cart = document.querySelectorAll("cart");
+console.log(cart);
+
+// for (let cart of carts) {
+//   console.log(cart);
+// }
