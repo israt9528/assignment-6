@@ -148,6 +148,7 @@ const cartBtn = (id) => {
 const removeFromCart = (id) => {
   const cartCard = document.getElementById(`icon-${id}`).parentNode;
   cartCard.classList.add("hidden");
+  // console.log(cartCard);
 
   // reduce cart total price
   const cartPrice = parseInt(cartCard.querySelector(".cart-price").innerText);
