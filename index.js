@@ -76,11 +76,11 @@ const displayPlants = (plants) => {
     // create child
     const div = document.createElement("div");
     div.innerHTML = `
-    <div class="bg-white p-4 rounded-lg ">
+    <div class="bg-white p-4 rounded-lg card text-left">
             <div>
               <img class=" w-full max-h-[200px] rounded-lg" src=${plant.image} alt="" />
             </div>
-            <h5 onclick="loadDetails(${plant.id})" class="my-2 font-semibold plant-name">${plant.name}</h5>
+            <h5 onclick="loadDetails(${plant.id})" class="my-2 font-semibold tree-name">${plant.name}</h5>
             <div class="h-[80px]"><p class="text-[#00000080] text-xs">
               ${plant.description}
             </p></div>
@@ -88,9 +88,9 @@ const displayPlants = (plants) => {
               <div class="bg-[#DCFCE7] text-[#15803D] text-sm rounded-3xl px-3 py-1">
                 ${plant.category}
               </div>
-              <div class="font-bold">৳${plant.price}</div>
+              <div class="font-bold">৳<span class="tree-price">${plant.price}</span></div>
             </div>
-            <button  class="bg-[#15803D] text-white w-full rounded-3xl py-2 " onclick="addToCart('e')">
+            <button  class="bg-[#15803D] text-white w-full rounded-3xl py-2 add-to-cart">
               Add to Cart
             </button>
           </div>
@@ -103,12 +103,46 @@ const displayPlants = (plants) => {
 
 loadCategories();
 
-const addToCart = (e) => {
-  let plantName = e.target.parentNode.querySelector(".plant-name").innerText;
-  console.log(plantName);
+let cartData = [];
 
-  // alert(`${plant.name} has been added to the cart`);
-};
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("add-to-cart")) {
+    const card = e.target.closest(".card");
+    const price = parseInt(card.querySelector(".tree-price").innerText);
+
+    alert(name + " has been added to the cart");
+
+    const cartContainer = document.getElementById("cart-container");
+
+    const div = document.createElement("div");
+    div.innerHTML = `
+      
+      <div
+              class="bg-[#F0FDF4] rounded-lg px-3 py-1 flex items-center justify-between mb-2"
+            >
+              <div>
+                <h5 class="font-medium text-sm">${name}</h5>
+                <p class="text-[#00000080] text-sm mb-2">${price}</p>
+              </div>
+              <div id="delete" class="text-[#00000080]">
+                <i class="fa-solid fa-xmark"></i>
+              </div>
+            </div>
+      
+      `;
+    cartContainer.appendChild(div);
+
+    const name = card.querySelector(".tree-name").innerText;
+
+    const totalPrice = parseInt(
+      document.getElementById("total-price").innerText
+    );
+    console.log(totalPrice);
+
+    const newTotalPrice = price + totalPrice;
+    document.getElementById("total-price").innerText = newTotalPrice;
+  }
+});
 
 // fetch all plants
 
