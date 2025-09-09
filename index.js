@@ -33,7 +33,7 @@ const displayCategories = (categories) => {
     // create child element
     const li = document.createElement("li");
     li.innerHTML = `
-     <li id="plant-list-${category.id}" class="py-2 rounded-md hover:bg-[#15803D] hover:text-[#fff] plant-list" onclick="loadPlants(${category.id})" >${category.category_name}</li>
+     <li id="plant-list-${category.id}" class=" py-2 rounded-md hover:bg-[#15803D] hover:text-[#fff] plant-list" onclick="loadPlants(${category.id})" >${category.category_name}</li>
     `;
     // append child
     listContainer.appendChild(li);
@@ -76,7 +76,7 @@ const displayPlants = (plants) => {
     // create child
     const div = document.createElement("div");
     div.innerHTML = `
-    <div class="bg-white p-4 rounded-lg card text-left">
+    <div class="bg-white p-4 rounded-lg text-left ">
             <div>
               <img class=" w-full max-h-[200px] rounded-lg" src=${plant.image} alt="" />
             </div>
@@ -90,7 +90,7 @@ const displayPlants = (plants) => {
               </div>
               <div class="font-bold">৳<span class="tree-price">${plant.price}</span></div>
             </div>
-            <button  class="bg-[#15803D] text-white w-full rounded-3xl py-2 add-to-cart">
+            <button id="cart-btn-${plant.id}" onclick="cartBtn(${plant.id})" class="bg-[#15803D] text-white w-full rounded-3xl py-2">
               Add to Cart
             </button>
           </div>
@@ -103,46 +103,59 @@ const displayPlants = (plants) => {
 
 loadCategories();
 
-let cartData = [];
+// cart button feature
 
-document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("add-to-cart")) {
-    const card = e.target.closest(".card");
-    const price = parseInt(card.querySelector(".tree-price").innerText);
+const cartBtn = (id) => {
+  const clickBtn = document.getElementById(`cart-btn-${id}`);
+  const parent = clickBtn.parentNode;
+  const plantName = parent.querySelector(".tree-name").innerText;
+  const plantPrice = parseInt(parent.querySelector(".tree-price").innerText);
 
-    alert(name + " has been added to the cart");
+  // make alert for click add to cart button
 
-    const cartContainer = document.getElementById("cart-container");
+  alert(plantName + " has been added to the cart.");
 
-    const div = document.createElement("div");
-    div.innerHTML = `
+  // add to cart section
+
+  const cartContainer = document.getElementById("cart-container");
+
+  const div = document.createElement("div");
+  div.innerHTML = `
       
       <div
-              class="bg-[#F0FDF4] rounded-lg px-3 py-1 flex items-center justify-between mb-2"
+              class="bg-[#F0FDF4] rounded-lg px-3 py-1 flex items-center justify-between mb-2 cart-item"
             >
               <div>
-                <h5 class="font-medium text-sm">${name}</h5>
-                <p class="text-[#00000080] text-sm mb-2">${price}</p>
+                <h5 class="font-medium text-sm">${plantName}</h5>
+                <p class="text-[#00000080] text-sm mb-2 cart-price">${plantPrice}</p>
               </div>
-              <div id="delete" class="text-[#00000080]">
+              <div id="icon-${id}" onclick="removeFromCart(${id})" class="text-[#00000080] remove">
                 <i class="fa-solid fa-xmark"></i>
               </div>
             </div>
       
       `;
-    cartContainer.appendChild(div);
+  cartContainer.appendChild(div);
+  // add  total price to the cart
+  const totalPrice = parseInt(document.getElementById("total-price").innerText);
 
-    const name = card.querySelector(".tree-name").innerText;
+  const newTotalPrice = plantPrice + totalPrice;
+  document.getElementById("total-price").innerText = newTotalPrice;
+};
 
-    const totalPrice = parseInt(
-      document.getElementById("total-price").innerText
-    );
-    console.log(totalPrice);
+// cross icon features
 
-    const newTotalPrice = price + totalPrice;
-    document.getElementById("total-price").innerText = newTotalPrice;
-  }
-});
+const removeFromCart = (id) => {
+  const cartCard = document.getElementById(`icon-${id}`).parentNode;
+  cartCard.classList.add("hidden");
+
+  // reduce ccart total price
+  const cartPrice = parseInt(cartCard.querySelector(".cart-price").innerText);
+
+  const totalPrice = parseInt(document.getElementById("total-price").innerText);
+  const newTotalPrice = totalPrice - cartPrice;
+  document.getElementById("total-price").innerText = newTotalPrice;
+};
 
 // fetch all plants
 
@@ -188,10 +201,3 @@ const displayDetails = (details) => {
 `;
   document.getElementById("my_modal_5").showModal();
 };
-
-let cart = document.querySelectorAll("cart");
-console.log(cart);
-
-// for (let cart of carts) {
-//   console.log(cart);
-// }
