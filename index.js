@@ -149,7 +149,7 @@ const removeFromCart = (id) => {
   const cartCard = document.getElementById(`icon-${id}`).parentNode;
   cartCard.classList.add("hidden");
 
-  // reduce ccart total price
+  // reduce cart total price
   const cartPrice = parseInt(cartCard.querySelector(".cart-price").innerText);
 
   const totalPrice = parseInt(document.getElementById("total-price").innerText);
@@ -165,6 +165,7 @@ const loadAllTrees = () => {
   fetch("https://openapi.programming-hero.com/api/plants")
     .then((res) => res.json())
     .then((data) => {
+      removeSelected();
       document.getElementById("all").classList.add("selected");
       displayPlants(data.plants);
     });
