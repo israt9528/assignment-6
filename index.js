@@ -123,13 +123,13 @@ const cartBtn = (id) => {
   div.innerHTML = `
       
       <div
-              class="bg-[#F0FDF4] rounded-lg px-3 py-1 flex items-center justify-between mb-2 cart-item"
+              class="bg-[#F0FDF4] rounded-lg px-3 py-1 flex items-center justify-between mb-2"
             >
               <div>
                 <h5 class="font-medium text-sm">${plantName}</h5>
                 <p class="text-[#00000080] text-sm mb-2 cart-price">${plantPrice}</p>
               </div>
-              <div id="icon-${id}" onclick="removeFromCart(${id})" class="text-[#00000080] remove">
+              <div id="icon-${id}" onclick="removeFromCart(${id})" class="text-[#00000080]">
                 <i class="fa-solid fa-xmark"></i>
               </div>
             </div>
