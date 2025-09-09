@@ -28,23 +28,24 @@ It selects elements based on a condition.It returns a new array with only elemen
 4.  How does destructuring assignment work in ES6?
     Ans:
     In ES6 (JavaScript), destructuring assignment lets us unpack values from arrays or properties from objects into separate variables in a very clean way.
+
     Example:
     For array--
+
     const numbers = [10, 20, 30];
     // ES6 destructuring
     const [x, y, z] = numbers;
-          console.log(x); // 10
-          console.log(y); // 20
-          console.log(z); // 30
+    console.log(x); // 10
+    console.log(y); // 20
+    console.log(z); // 30
 
 For object--
 const person = { name: "Alice", age: 25, city: "Paris" };
 // ES6 destructuring
 const { name, age, city } = person;
-
-      console.log(name); // Alice
-      console.log(age);  // 25
-      console.log(city); // Paris
+console.log(name); // Alice
+console.log(age); // 25
+console.log(city); // Paris
 
 here, at the left we declare variables as like array or object for pulling out needed values from arrays or objects, separately to new variable.
 
